@@ -1,0 +1,19 @@
+{
+  "root_path": "C:\\Users\\erick\\Downloads\\tcc-ufs-master\\docs",
+  "calculate_cyclomatic_complexity": "on",
+  "diff_cyclomatic_complexity": 5,
+  "calculate_raw_metrics": "on",
+  "diff_raw_metrics_loc": 15,
+  "diff_raw_metrics_lloc": 10,
+  "diff_raw_metrics_sloc": 10,
+  "result_output_txt": "C:\\Users\\erick\\Downloads\\tcc-ufs-master\\docs\\result.txt",
+  "result_output_csv": "C:\\Users\\erick\\Downloads\\tcc-ufs-master\\docs\\result.csv",
+  "result_output_alert_csv": "C:\\Users\\erick\\Downloads\\tcc-ufs-master\\docs\\result_alert.csv",
+  "initial_score": 100,
+  "decrease_factor": 3,
+  "increase_factor": 2,
+  "rate_decrease_to_raw_metrics": 15,
+  "rate_increase_to_raw_metrics": 10,
+  "score_to_great_solution": 101,
+  "score_to_not_so_good_solution": 50
+}
