@@ -1,0 +1,44 @@
+[
+    {
+        "PROBLEM": "76-Correcao-de-Provas",
+        "SOLUTION": "aluno",
+        "IS_TEACHER": "NO",
+        "CYCLOMATIC_COMPLEXITY": "1",
+        "EXCEEDED_LIMIT_CC": "NO",
+        "LINES OF CODE": "6",
+        "EXCEEDED LIMIT LOC": "NO",
+        "LOGICAL LINES OF CODE": "4",
+        "EXCEEDED LIMIT LLOC": "NO",
+        "SOURCE LINES OF CODE": "4",
+        "LIMIT SLOC": "NO",
+        "FINAL SCORE": "99.1"
+    },
+    {
+        "PROBLEM": "76-Correcao-de-Provas",
+        "SOLUTION": "aluno2",
+        "IS_TEACHER": "NO",
+        "CYCLOMATIC_COMPLEXITY": "1",
+        "EXCEEDED_LIMIT_CC": "NO",
+        "LINES OF CODE": "8",
+        "EXCEEDED LIMIT LOC": "NO",
+        "LOGICAL LINES OF CODE": "4",
+        "EXCEEDED LIMIT LLOC": "NO",
+        "SOURCE LINES OF CODE": "4",
+        "LIMIT SLOC": "NO",
+        "FINAL SCORE": "98.2"
+    },
+    {
+        "PROBLEM": "76-Correcao-de-Provas",
+        "SOLUTION": "professor",
+        "IS_TEACHER": "YES",
+        "CYCLOMATIC_COMPLEXITY": "1",
+        "EXCEEDED_LIMIT_CC": "-",
+        "LINES OF CODE": "4",
+        "EXCEEDED LIMIT LOC": "-",
+        "LOGICAL LINES OF CODE": "4",
+        "EXCEEDED LIMIT LLOC": "-",
+        "SOURCE LINES OF CODE": "4",
+        "LIMIT SLOC": "-",
+        "FINAL SCORE": "-"
+    }
+]

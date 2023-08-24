@@ -11,16 +11,17 @@ from evaluator_code.service.file_builder import FileBuilder
 ON = "on"
 
 
-def main_flow():
+def main_flow(name, path):
     configs = load_configurations()
 
-    path = configs['root_path']
-
     source_codes = create_source_codes_from_path(path, configs['initial_score'])
+    print("esse é o diretorio" + path)
 
     # ------------ CYCLOMATIC COMPLEXITY -------------
     if configs['calculate_cyclomatic_complexity'] == ON:
+        print("eae2")
         calculate_cyclomatic_complexity(path, source_codes)
+        print("eae2")
 
     # ---------------- RAW METRICS ---------------------
     if configs['calculate_raw_metrics'] == ON:
@@ -28,9 +29,9 @@ def main_flow():
 
     # ------------- COMPARE SUBMISSIONS -------------
     problems = compare_submissions(source_codes, configs)
-
+    print("eae2")
     # -------------- FILE BUILDER ------------------
-    FileBuilder(problems, source_codes, configs).build()
+    FileBuilder(problems, source_codes, name, path).build()
 
     # ---------------- PRINT RESULTS -------------------
     # for code in source_codes:
@@ -159,7 +160,7 @@ def create_source_codes_from_path(path, score):
 
     for directory, subdirectories, files in os.walk(path):
         for file in files:
-            if ('\\alunos' in directory or '\\professor' in directory) and ('.py' in file):
+            if ('alunos' in directory or 'professor' in directory) and ('.py' in file):
                 source_code = SourceCode(os.path.join(directory, file))
                 source_code.score = score
                 source_codes.append(source_code)
