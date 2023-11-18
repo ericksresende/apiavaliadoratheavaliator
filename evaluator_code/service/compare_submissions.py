@@ -8,7 +8,6 @@ class CompareSubmissions:
         base_complexity = self.__compute_total_points_of_cyclomatic_complexity(self.base.cyclomatic_complexity)
         self.base.cyclomatic_complexity_result_txt = 'Complexidade ciclomática: {0} pontos.'.format(base_complexity)
         self.base.cyclomatic_complexity_result_csv = self.base.extract_problem_name() + ';' + self.base.extract_file_name() + ';YES;' + str(base_complexity) + ';-;'
-
         for submission in self.submissions:
             submission_total_complexity = self.__compute_total_points_of_cyclomatic_complexity(submission.cyclomatic_complexity)
 
@@ -177,11 +176,11 @@ class CompareSubmissions:
 
     def __compute_total_points_of_cyclomatic_complexity(self, complexity):
         total_points = 0
+        # print(complexity)
         if len(complexity) > 1:
             for function in complexity:
                 total_points += function['complexity']
             return total_points
-
         return complexity[0]['complexity']
 
     def __calculate_score(self, submission, diff_in_points, is_raw_metrics=False):

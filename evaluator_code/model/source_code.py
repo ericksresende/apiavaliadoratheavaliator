@@ -29,10 +29,10 @@ class SourceCode:
         print(self.raw_metrics)
 
     def extract_file_name(self):
-        return self.path.split('\\')[-1].replace('.py', '')
+        return self.path.split('/')[-1].replace('.py', '')
 
     def extract_problem_name(self):
-        return self.path.split('\\')[-3]
+        return self.path.split('/')[-3]
 
     def is_base_source_code(self):
-        return self.path.split('\\')[-2] == 'professor'
+        return self.path.split('/')[-2] == 'professor'

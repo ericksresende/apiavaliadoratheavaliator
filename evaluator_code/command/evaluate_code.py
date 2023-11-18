@@ -1,6 +1,11 @@
 import json
 import os
 import subprocess
+import sys
+import concurrent.futures
+import threading
+from functools import partial
+sys.path.append("../")
 
 from evaluator_code.service.cyclomatic_complexity import CyclomaticComplexity
 from evaluator_code.service.raw_metrics import RawMetrics
@@ -10,12 +15,13 @@ from evaluator_code.service.file_builder import FileBuilder
 
 ON = "on"
 
+source_codes_lock = threading.Lock()
 
 def main_flow(name, path):
     configs = load_configurations()
 
     source_codes = create_source_codes_from_path(path, configs['initial_score'])
-    print("esse é o diretorio" + path)
+    print("esse é o diretorio: " + path)
 
     # ------------ CYCLOMATIC COMPLEXITY -------------
     if configs['calculate_cyclomatic_complexity'] == ON:
@@ -29,7 +35,7 @@ def main_flow(name, path):
 
     # ------------- COMPARE SUBMISSIONS -------------
     problems = compare_submissions(source_codes, configs)
-    print("eae2")
+    print("eae3")
     # -------------- FILE BUILDER ------------------
     FileBuilder(problems, source_codes, name, path).build()
 
@@ -55,8 +61,7 @@ def compare_submissions(source_codes, configs):
         comparator.compare_raw_metrics()
         comparator.compare_submissions_which_need_attention()
     return source_codes_for_problem.keys()
-
-
+    
 def extract_source_codes_for_problem(source_codes):
     source_codes_for_problem = {}
     for code in source_codes:
@@ -79,7 +84,13 @@ def calculate_cyclomatic_complexity(path, source_codes):
 
 
 def modularize_and_calculate_cyclomatic_complexity_for_all_codes(source_codes):
-    for code in source_codes:
+    num_threads = 4
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        executor.map(modularize_and_calculate_cyclomatic_complexity_for_each_codes, source_codes)
+
+       
+def modularize_and_calculate_cyclomatic_complexity_for_each_codes(code):
         file_path = code.path.replace('.py', '__CC.py')
 
         new_file = open(file_path, 'w')
@@ -120,7 +131,7 @@ def modularize_and_calculate_cyclomatic_complexity_for_all_codes(source_codes):
                 new_file.write(line)
 
         new_file.close()
-        subprocess.check_output('python -m black ' + file_path)
+        subprocess.check_output('python -m black ' + file_path,shell=True)
 
         sc = SourceCode(file_path)
         CyclomaticComplexity(file_path, [sc]).calculate_complexity()
@@ -169,4 +180,4 @@ def create_source_codes_from_path(path, score):
 
 
 def load_configurations():
-    return json.load(open('../configuration/configs.json', 'r'))
+    return json.load(open('configuration/configs.json', 'r'))

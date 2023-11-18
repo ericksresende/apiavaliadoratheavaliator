@@ -21,10 +21,8 @@ class CyclomaticComplexity:
         Calculates the cyclomatic complexity of the source codes of a given directory
         :return: List of the SourceCode class filling the cyclomatic complexity field
         """
-
         # Process all codes from directory and return json string with result
-        process_data_string = sp.check_output('python -m radon cc ' + self.path + ' -j')
-
+        process_data_string = sp.check_output('python -m radon cc ' + self.path + ' -j',shell=True)
         self.__extract_data(process_data_string)
 
         self.__clean_data()
@@ -37,17 +35,21 @@ class CyclomaticComplexity:
         :return: list of SourceCode class
         """
 
-        # convert data content to json
-        data = json.loads(data[0:-4])
+        try:
+            # Parse the JSON data
+            parsed_data = json.loads(data)
+        except json.JSONDecodeError as e:
+            print(f"Error parsing JSON data: {e}")
 
-        # for each key in data dict
-        for key in data.keys():
-            # for source code in source_codes list
-            for source_code in self.sources_code:
-                if key == source_code.path:
-                    source_code.cyclomatic_complexity = data[key]
+        # Loop through the parsed data
+        for key, value in parsed_data.items():
+            # Find the corresponding SourceCode object
+            matching_source_code = next((source_code for source_code in self.sources_code if source_code.path == key), None)
+            if matching_source_code:
+                matching_source_code.cyclomatic_complexity = value
 
         return self.sources_code
+
 
     def __clean_data(self):
         for source_code in self.sources_code:

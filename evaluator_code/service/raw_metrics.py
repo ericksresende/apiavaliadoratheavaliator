@@ -21,7 +21,7 @@ class RawMetrics:
         equation: loc = sloc + blanks + multi + single_comments
         :return:
         """
-        process_data_string = sp.check_output('python -m radon raw ' + self.path + ' -j')
+        process_data_string = sp.check_output('python -m radon raw ' + self.path + ' -j',shell=True)
 
         self.__extract_data(process_data_string)
 
@@ -32,7 +32,7 @@ class RawMetrics:
         :param data: string containing data for process
         :return: list of SourceCode class
         """
-        data = json.loads(data[0:-4])
+        data = json.loads(data)
 
         # for key in json data
         for key in data.keys():

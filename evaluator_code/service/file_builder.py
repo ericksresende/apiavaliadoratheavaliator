@@ -85,13 +85,13 @@ class FileBuilder:
                     "IS_TEACHER": row["IS_TEACHER"],
                     "CYCLOMATIC_COMPLEXITY": row["CYCLOMATIC_COMPLEXITY"],
                     "EXCEEDED_LIMIT_CC": row["EXCEEDED LIMIT CC"],
-                    "LINES OF CODE": row["LINES OF CODE"],
-                    "EXCEEDED LIMIT LOC": row["EXCEEDED LIMIT LOC"],
-                    "LOGICAL LINES OF CODE": row["LOGICAL LINES OF CODE"],
-                    "EXCEEDED LIMIT LLOC": row["EXCEEDED LIMIT LLOC"],
-                    "SOURCE LINES OF CODE": row["SOURCE LINES OF CODE"],
-                    "LIMIT SLOC": row["LIMIT SLOC"],
-                    "FINAL SCORE": row["FINAL SCORE"]
+                    "LINES_OF_CODE": row["LINES OF CODE"],
+                    "EXCEEDED_LIMIT_LOC": row["EXCEEDED LIMIT LOC"],
+                    "LOGICAL_LINES_OF_CODE": row["LOGICAL LINES OF CODE"],
+                    "EXCEEDED_LIMIT_LLOC": row["EXCEEDED LIMIT LLOC"],
+                    "SOURCE_LINES_OF_CODE": row["SOURCE LINES OF CODE"],
+                    "LIMIT_SLOC": row["LIMIT SLOC"],
+                    "FINAL_SCORE": row["FINAL SCORE"]
                 }
                 data.append(json_entry)
 

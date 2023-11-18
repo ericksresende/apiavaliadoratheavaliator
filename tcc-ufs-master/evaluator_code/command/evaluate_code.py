@@ -1,6 +1,8 @@
 import json
 import os
 import subprocess
+import sys
+sys.path.append("../")
 
 from evaluator_code.service.cyclomatic_complexity import CyclomaticComplexity
 from evaluator_code.service.raw_metrics import RawMetrics
@@ -168,4 +170,4 @@ def create_source_codes_from_path(path, score):
 
 
 def load_configurations():
-    return json.load(open('../configuration/configs.json', 'r'))
+    return json.load(open('configuration/configs.json', 'r'))
