@@ -1,0 +1,1 @@
+web: python evaluate_code/main/main.py
